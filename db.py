@@ -15,10 +15,16 @@ def init_db():
     conn.close()
 
 
+def find_all_users():
+    conn = sqlite3.connect("crm.sqlite")
+    cursor = conn.cursor()
+    sql = "SELECT * FROM customers"
+    results = cursor.execute(sql)
+    users = results.fetchall()
 
-
-
-
+    conn.commit()
+    conn.close()
+    return users
 
 if __name__ == '__main__':
     init_db()
