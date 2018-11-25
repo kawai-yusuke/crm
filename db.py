@@ -26,5 +26,19 @@ def find_all_users():
     conn.close()
     return users
 
+
+def add_user(name, age):
+    conn = sqlite3.connect("crm.sqlite")
+    cursor = conn.cursor()
+
+    sql = "INSERT INTO customers (name,age) VALUES (?,?)"
+
+    cursor.execute(sql, (name, age))
+
+    conn.commit()
+
+    conn.close()
+
+
 if __name__ == '__main__':
     init_db()
